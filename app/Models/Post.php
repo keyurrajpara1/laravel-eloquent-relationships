@@ -11,7 +11,9 @@ class Post extends Model
         ]);
     }
     public function tags(){
-        return $this->belongsToMany(Tag::class, 'post_tags', 'post_id', 'tag_id');
+        return $this->belongsToMany(Tag::class, 'post_tags', 'post_id', 'tag_id')
+            ->withTimestamps() // Retrieving Pivot Table Columns
+            ->withPivot('status'); // Retrieving Pivot Table Columns
         /*  Second parameter: Name of intermediate table / Name of pivot table
             Third parameter:  Relation column name - foreign key of parent model
             Fourth parameter: Relation column name - 

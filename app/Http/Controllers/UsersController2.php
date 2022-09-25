@@ -36,6 +36,7 @@ class UsersController2 extends Controller
         // Attach multiple tags
         // $post = Post::with('tags')->first();
         // $post->tags()->attach([2, 3, 4]);
+        // $post->tags()->attach([1 => ['status' => 'active'], 2 => ['status' => 'inactive']]); // Adding Pivot Table Columns
 
         // $post = Post::with('tags')->first()->toArray();
         // echo "<pre>";
@@ -52,7 +53,7 @@ class UsersController2 extends Controller
             echo "<p>".$value->user->name."</p>";
             echo "<ul>";
             foreach ($value->tags as $key1 => $value1) {
-                echo "<li>".$value1->name."</li>";
+                echo "<li>".$value1->name." (".$value1->pivot->created_at.")</li>";
             }
             echo "</ul>";
         }
