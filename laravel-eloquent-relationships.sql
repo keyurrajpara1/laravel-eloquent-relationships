@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 25, 2022 at 05:08 PM
+-- Generation Time: Sep 25, 2022 at 05:58 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.28
 
@@ -88,16 +88,25 @@ INSERT INTO `posts` (`id`, `user_id`, `title`, `created_at`, `updated_at`) VALUE
 CREATE TABLE `post_tags` (
   `id` bigint(20) NOT NULL,
   `post_id` bigint(20) DEFAULT NULL,
-  `tag_id` bigint(20) DEFAULT NULL
+  `tag_id` bigint(20) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `post_tags`
 --
 
-INSERT INTO `post_tags` (`id`, `post_id`, `tag_id`) VALUES
-(3, 2, 3),
-(5, 1, 2);
+INSERT INTO `post_tags` (`id`, `post_id`, `tag_id`, `status`, `created_at`, `updated_at`) VALUES
+(3, 2, 3, NULL, NULL, NULL),
+(5, 1, 2, NULL, NULL, NULL),
+(6, 1, 1, NULL, NULL, NULL),
+(7, 1, 1, NULL, NULL, NULL),
+(8, 1, 1, NULL, '2022-09-25 15:35:51', '2022-09-25 15:35:51'),
+(9, 1, 1, NULL, '2022-09-25 15:37:13', '2022-09-25 15:37:13'),
+(10, 1, 1, 'approved', '2022-09-25 15:46:45', '2022-09-25 15:46:45'),
+(11, 1, 2, 'approved1', '2022-09-25 15:46:45', '2022-09-25 15:46:45');
 
 -- --------------------------------------------------------
 
@@ -206,7 +215,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `post_tags`
 --
 ALTER TABLE `post_tags`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `tags`
