@@ -3,6 +3,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\UsersController1;
 use App\Http\Controllers\UsersController2;
+use App\Http\Controllers\UsersController3;
 Route::get("/", [UsersController::class, 'index']);
 Route::get("create-address-entry", [UsersController::class, 'createAddressEntry']);
 Route::get("user-relationship-in-address-model", [UsersController::class, 'userRelationshipInAddressModel']);
@@ -20,6 +21,9 @@ Route::get("many-to-many/display-post", [UsersController2::class, 'displayPost']
 Route::get("many-to-many/detach-tag-from-post", [UsersController2::class, 'detachTagFromPost']);
 
 Route::get("many-to-many/get-tags", [UsersController2::class, 'getTags']);
+
+Route::get("has-one-through/has-many-through/create-project1", [UsersController3::class, 'createProject1']);
+Route::get("has-one-through/has-many-through/create-project2", [UsersController3::class, 'createProject2']);
 /*Route::get('/', function () {
     return view('welcome');
 });*/

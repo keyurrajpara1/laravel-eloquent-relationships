@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 26, 2022 at 06:49 AM
+-- Generation Time: Sep 26, 2022 at 07:44 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.28
 
@@ -111,6 +111,26 @@ INSERT INTO `post_tags` (`id`, `post_id`, `tag_id`, `status`, `created_at`, `upd
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `projects`
+--
+
+CREATE TABLE `projects` (
+  `id` bigint(20) NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `projects`
+--
+
+INSERT INTO `projects` (`id`, `title`, `created_at`, `updated_at`) VALUES
+(1, 'Project A', '2022-09-26 17:19:31', '2022-09-26 17:19:31');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tags`
 --
 
@@ -134,11 +154,35 @@ INSERT INTO `tags` (`id`, `name`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tasks`
+--
+
+CREATE TABLE `tasks` (
+  `id` bigint(20) NOT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tasks`
+--
+
+INSERT INTO `tasks` (`id`, `user_id`, `title`, `created_at`, `updated_at`) VALUES
+(1, 26, 'Task 1 for project 1 by user 1', '2022-09-26 17:19:32', '2022-09-26 17:19:32'),
+(2, 26, 'Task 2 for project 1 by user 1', '2022-09-26 17:19:32', '2022-09-26 17:19:32'),
+(3, 27, 'Task 3 for project 1 by user 2', '2022-09-26 17:19:32', '2022-09-26 17:19:32');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
   `id` bigint(20) NOT NULL,
+  `project_id` bigint(20) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
@@ -150,15 +194,17 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `created_at`, `updated_at`) VALUES
-(1, 'Liam', 'liam@gmail.com', '$2y$10$QxLYPKUmnRlSDrrlUIfDvumz/tc0m2WjX5cf4/JFFTzzmnwXHjYQ.', '2022-04-27 16:31:13', '2022-04-27 16:31:13'),
-(2, 'Noah', 'noah@gmail.com', '$2y$10$Jg9INIRMBpGIW66x5BybKOdBKtwU4/qsc4CUTD/Lt83bKbbmH2YP6', '2022-04-27 16:31:13', '2022-04-27 16:31:13'),
-(3, 'Oliver', 'oliver@gmail.com', '$2y$10$pzzj4BKoSEHZUzn8B.j3leyQZGZcZw1Fi3zGtvHo9Np4FaweXGFGq', '2022-04-27 16:31:13', '2022-04-27 16:31:13'),
-(4, 'Elijah', 'elijah@gmail.com', '$2y$10$So8apha8hWFvAcrSOImDRuwRJO.ySrVA9OYWaCs4R0jOUUx5jQhXS', '2022-04-27 16:31:13', '2022-04-27 16:31:13'),
-(5, 'Olivia', 'olivia@gmail.com', '$2y$10$ZAfpUgu7XsgdPiCwecNXOu6wBpULMLGYTmwPHRHWZJdUlniaH6zAW', '2022-04-27 16:31:13', '2022-04-27 16:31:13'),
-(6, 'Emma', 'emma@gmail.com', '$2y$10$2iAj5P3jp1Jff0t3T7CYiOXrim4qIUmfl.xVprUA9.gJ6VtaN06uy', '2022-04-27 16:31:13', '2022-04-27 16:31:13'),
-(7, 'Ava', 'ava@gmail.com', '$2y$10$57D/WgQNwyt5xXUOQB95BueuiO0J78I/N.WF9s5c07agXcQhu0pbm', '2022-04-27 16:31:13', '2022-04-27 16:31:13'),
-(8, 'Charlotte', 'charlotte@gmail.com', '$2y$10$ko7TMqavsxvojYKCIP68YOrBCoU1N.YU8DJFAxMPn/FhUINuT3MB6', '2022-04-27 16:31:13', '2022-04-27 16:31:13');
+INSERT INTO `users` (`id`, `project_id`, `name`, `email`, `password`, `created_at`, `updated_at`) VALUES
+(1, NULL, 'Liam', 'liam@gmail.com', '$2y$10$QxLYPKUmnRlSDrrlUIfDvumz/tc0m2WjX5cf4/JFFTzzmnwXHjYQ.', '2022-04-27 16:31:13', '2022-04-27 16:31:13'),
+(2, NULL, 'Noah', 'noah@gmail.com', '$2y$10$Jg9INIRMBpGIW66x5BybKOdBKtwU4/qsc4CUTD/Lt83bKbbmH2YP6', '2022-04-27 16:31:13', '2022-04-27 16:31:13'),
+(3, NULL, 'Oliver', 'oliver@gmail.com', '$2y$10$pzzj4BKoSEHZUzn8B.j3leyQZGZcZw1Fi3zGtvHo9Np4FaweXGFGq', '2022-04-27 16:31:13', '2022-04-27 16:31:13'),
+(4, NULL, 'Elijah', 'elijah@gmail.com', '$2y$10$So8apha8hWFvAcrSOImDRuwRJO.ySrVA9OYWaCs4R0jOUUx5jQhXS', '2022-04-27 16:31:13', '2022-04-27 16:31:13'),
+(5, NULL, 'Olivia', 'olivia@gmail.com', '$2y$10$ZAfpUgu7XsgdPiCwecNXOu6wBpULMLGYTmwPHRHWZJdUlniaH6zAW', '2022-04-27 16:31:13', '2022-04-27 16:31:13'),
+(6, NULL, 'Emma', 'emma@gmail.com', '$2y$10$2iAj5P3jp1Jff0t3T7CYiOXrim4qIUmfl.xVprUA9.gJ6VtaN06uy', '2022-04-27 16:31:13', '2022-04-27 16:31:13'),
+(7, NULL, 'Ava', 'ava@gmail.com', '$2y$10$57D/WgQNwyt5xXUOQB95BueuiO0J78I/N.WF9s5c07agXcQhu0pbm', '2022-04-27 16:31:13', '2022-04-27 16:31:13'),
+(8, NULL, 'Charlotte', 'charlotte@gmail.com', '$2y$10$ko7TMqavsxvojYKCIP68YOrBCoU1N.YU8DJFAxMPn/FhUINuT3MB6', '2022-04-27 16:31:13', '2022-04-27 16:31:13'),
+(26, 1, 'User 1', 'user1@example.com', '$2y$10$L4.tJnqfaN3p18PL5siC0uDXKLU93XMGxtvTIkb.wst0ZEkR/2M4K', '2022-09-26 17:19:32', '2022-09-26 17:19:32'),
+(27, 1, 'User 2', 'user2@example.com', '$2y$10$4ls08I5V7QQ0cNFpHheAz.MXJfmwfAW2BQ9byE6sae2QCOmtfy4O2', '2022-09-26 17:19:32', '2022-09-26 17:19:32');
 
 --
 -- Indexes for dumped tables
@@ -183,9 +229,21 @@ ALTER TABLE `post_tags`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `projects`
+--
+ALTER TABLE `projects`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tags`
 --
 ALTER TABLE `tags`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tasks`
+--
+ALTER TABLE `tasks`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -218,16 +276,28 @@ ALTER TABLE `post_tags`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT for table `projects`
+--
+ALTER TABLE `projects`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `tags`
 --
 ALTER TABLE `tags`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `tasks`
+--
+ALTER TABLE `tasks`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -3,6 +3,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 class User extends Model
 {
+    protected $fillable = [
+        'name', 'email', 'password', 'project_id'
+    ];
     public function address(){
         // return $this->hasOne('App\Models\Address', 'user_id', 'id');
         return $this->hasOne(Address::class, 'user_id', 'id');
@@ -15,5 +18,14 @@ class User extends Model
     }
     public function posts(){
         return $this->hasMany(Post::class, 'user_id', 'id');
+    }
+    public function project(){
+        return $this->belongsTo(Project::class, 'project_id', 'id');
+        /*  Second parameter project_id : foreign key of users table.
+            Third parameter id       : primary key of projects table.
+        */
+    }
+    public function tasks(){
+        return $this->hasMany(Task::class, 'user_id', 'id');
     }
 }
